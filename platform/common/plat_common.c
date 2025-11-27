@@ -61,7 +61,7 @@ void plat_debug_printf(IN debug_level_e level, IN const char *file, IN int line,
     p_tm = (struct tm *)&_sysTm;
     if(p_tm)
     {
-        snprintf(sys_time, "%02d-%02d %02d:%02d:%02d", (p_tm->tm_mon + 1), p_tm->tm_mday, p_tm->tm_hour, p_tm->tm_min, p_tm->tm_sec);
+        snprintf(sys_time, DBG_MAX_LEN, "%02d-%02d %02d:%02d:%02d", (p_tm->tm_mon + 1), p_tm->tm_mday, p_tm->tm_hour, p_tm->tm_min, p_tm->tm_sec);
     }
 
     prctl(PR_GET_NAME, tname);
