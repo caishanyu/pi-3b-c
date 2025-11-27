@@ -1,0 +1,15 @@
+/***********************************************
+*	File name:		plat_alloc.h
+*	Description:	c header file for alloc
+*	Author:			cai <sybstudy@yeah.net>
+*	Version:		v1.0, 27Nov25, create file
+************************************************/
+
+
+/*
+*   Function name:  plat_timer_create
+*   Function:       create a timer
+*   Param in:       
+*   Param out:      
+*   Return:         error code, 0-ok, others
+*/
