@@ -52,6 +52,8 @@ void plat_debug_printf(IN debug_level_e level, IN const char *file, IN int line,
         case DBG_LEVEL_ERROR:
             fmt_front = "\033[31;49m%s[<%s>:<%s:%d>] %s\033[0m\r\n";
             break;
+        case DBG_LEVEL_ALZ:
+            fmt_front = "\033[0;32;32m%s[<%s>:<%s:%d>] %s\033[0m\r\n";
         default:
             break;
     }

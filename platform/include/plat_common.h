@@ -31,6 +31,7 @@ typedef enum
     DBG_LEVEL_NORMAL,
     DBG_LEVEL_MAJOR,
     DBG_LEVEL_ERROR,
+    DBG_LEVEL_ALZ,
 
     DBG_LEVEL_END,
 }debug_level_e;
@@ -60,7 +61,7 @@ void plat_debug_printf(IN debug_level_e level, IN const char *file, IN int line,
 #define DBG_MAJ(fmt, args...)
 #endif
 #define DBG_ERR(fmt, args...)   plat_debug_printf(DBG_LEVEL_ERROR, __FILE__, __LINE__, fmt, ##args);
-#define DBG_ALZ(fmt, args...)   plat_debug_printf(DBG_LEVEL_NORMAL, __FILE__, __LINE__, fmt, ##args);
+#define DBG_ALZ(fmt, args...)   plat_debug_printf(DBG_LEVEL_ALZ, __FILE__, __LINE__, fmt, ##args);
 
 // 用于校验条件合法性，比如函数参数判断
 // 检查x表达式是否成立，不成立则提示，不直接返回
@@ -84,6 +85,14 @@ void plat_debug_printf(IN debug_level_e level, IN const char *file, IN int line,
     {                                       \
         DBG_ERR("Ensure %s failed.", #x);   \
         return val;                         \
+    }                                       \
+}while(0);
+// 检查x表达式是否成立，不成立则跳转到done
+#define plat_ensure_done(x)             do{ \
+    if(unlikely(!(x)))                      \
+    {                                       \
+        DBG_ERR("Ensure %s failed.", #x);   \
+        goto done;                          \
     }                                       \
 }while(0);
 
